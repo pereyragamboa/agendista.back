@@ -1,0 +1,21 @@
+{
+  "name": "agendista.back",
+  "version": "0.1.0",
+  "description": "back-end for Agendista",
+  "main": "src/index.js",
+  "scripts": {
+    "devserver": "nodemon src/index.js --ignore-test",
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martín Pereyra",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

@@ -1,0 +1,38 @@
+query getAllServices {getAllServices{
+  name
+  description
+  duration
+}}
+
+query getService {getService(serviceId: "0x10002"){
+  id
+  description
+}}
+
+mutation addService {
+  addService(newService: {
+    name: "Servicio promocional",
+    description: "Servicio de ajuste para cuponeras de descuento",
+    duration: 60,
+    price: 150
+  }){
+    id
+    name
+  }
+}
+
+mutation updateService {
+  updateService(
+    serviceId: "0x10003",
+  	service: {
+      name: "Servicio de lujo",
+      description: "Para los clientes del Plan Platino"}
+  ){
+    id
+    description
+  }
+}
+
+mutation deleteService {
+  deleteService(serviceId: "0x10001")
+}
