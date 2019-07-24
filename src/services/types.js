@@ -17,12 +17,12 @@ const serviceTypes = `type Service {
   id: ID!
   name: String!
   description: String
-  duration: Int
-  price: Float
+  duration: Int!
+  price: Float!
 }
 
 input ServiceInput {
-  name: String!
+  name: String
   description: String
   duration: Int
   price: Float
