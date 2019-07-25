@@ -1,6 +1,6 @@
-//const graphql = import('graphql');
-
 //This equals to:
+
+//const graphql = import('graphql');
 //
 //module.exports = new graphql.GraphQLObjectType({
 //  name: 'Service',
@@ -28,14 +28,4 @@ input ServiceInput {
   price: Float
 }`;
 
-class Service {
-  constructor(id, { name, description, duration, price }) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.duration = duration;
-    this.price = price;
-  }
-}
-
-module.exports = { types: serviceTypes, Service };
+module.exports = { types: serviceTypes, /*Service*/ };
