@@ -1,0 +1,30 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Client {
+    id: ID!
+    firstName: String
+    lastName: String!
+    telephone: String!
+    email: String
+}
+
+type ClientInput {
+    firstName: String
+    lastName: String!
+    telephone: String!
+    email: String
+}
+
+type Query {
+    getAllClients: [Client!]
+    getClient(clientId: ID!): Client
+}
+
+type Mutation {
+    addClient(client: ClientInput): Client!
+    updateClient(clientId: ID!, client: ClientInput): Client!
+    deleteClient(clientId: ID!): Boolean!
+}
