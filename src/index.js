@@ -5,13 +5,13 @@ const apolloServer = new ApolloServer({
   typeDefs: gql(serviceSchema),
   resolvers: {
     Query: {
-      getService: serviceRoot.getService,
+      getService: (parent, args) => serviceRoot.getService(args),
       getAllServices: serviceRoot.getAllServices,
     },
     Mutation: {
-      addService: serviceRoot.addService,
-      deleteService: serviceRoot.deleteService,
-      updateService: serviceRoot.updateService
+      addService: (parent, args) => serviceRoot.addService(args),
+      deleteService: (parent, args) => serviceRoot.deleteService(args),
+      updateService: (parent, args) => serviceRoot.updateService(args)
     }
   }
 });
