@@ -16,6 +16,9 @@ const apolloServer = new ApolloServer({
   }
 });
 
-apolloServer.listen().then(({url}) => {
-  console.log(`GraphQL server ${url} started at ${new Date().toLocaleTimeString()}.`);
-});
+async function startServer() {
+  const result = await apolloServer.listen();
+  console.log(`GraphQL server ${result.url} started at ${new Date().toLocaleTimeString()}.`);
+}
+
+startServer();
