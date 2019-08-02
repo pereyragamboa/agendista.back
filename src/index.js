@@ -1,13 +1,21 @@
-const { buildSchema } = require('graphql');
-const express = require('express');
-const graphqlHttp = require('express-graphql');
+const { ApolloServer, gql } = require('apollo-server');
 const { serviceRoot, serviceSchema } = require('./services');
 
-const app = express();
-app.use('/graphql', graphqlHttp({
-  graphiql: true,
-  rootValue: {...serviceRoot},
-  schema: buildSchema(serviceSchema)
-}));
-app.listen(4000);
-console.log(`GraphQL server started at ${new Date().toLocaleTimeString()}.`);
+const apolloServer = new ApolloServer({
+  typeDefs: gql(serviceSchema),
+  resolvers: {
+    Query: {
+      getService: serviceRoot.getService,
+      getAllServices: serviceRoot.getAllServices,
+    },
+    Mutation: {
+      addService: serviceRoot.addService,
+      deleteService: serviceRoot.deleteService,
+      updateService: serviceRoot.updateService
+    }
+  }
+});
+
+apolloServer.listen().then(({url}) => {
+  console.log(`GraphQL server ${url} started at ${new Date().toLocaleTimeString()}.`);
+});
