@@ -1,7 +1,8 @@
 const { ApolloServer, gql } = require('apollo-server');
 const { serviceRoot, serviceSchema } = require('./services');
+const clients = require('./clients/index');
 
-const apolloServer = new ApolloServer({
+const servicesServer = new ApolloServer({
   typeDefs: gql(serviceSchema),
   resolvers: {
     Query: {
@@ -16,9 +17,14 @@ const apolloServer = new ApolloServer({
   }
 });
 
-async function startServer() {
-  const result = await apolloServer.listen();
-  console.log(`GraphQL server ${result.url} started at ${new Date().toLocaleTimeString()}.`);
-}
+const clientsServer = new ApolloServer(clients);
 
-startServer();
+let port = 4000;
+try {
+  [servicesServer, clientsServer].forEach(async server => {
+    const result = await server.listen(++port);
+    console.log(`GraphQL server ${result.url} started at ${new Date().toLocaleTimeString()}.`);
+  });
+} catch (err) {
+  console.log(` ERR > ${err}`);
+}

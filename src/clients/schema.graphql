@@ -11,7 +11,7 @@ type Client {
     email: String
 }
 
-type ClientInput {
+input ClientInput {
     firstName: String
     lastName: String!
     telephone: String!

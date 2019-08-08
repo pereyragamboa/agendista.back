@@ -28,29 +28,29 @@ module.exports = {
   clients: [
     {
       id: __clientId++,
-      firstNames: "Alicia",
-      lastNames: "Bernal Cienfuegos",
+      firstName: "Alicia",
+      lastName: "Bernal Cienfuegos",
       telephone: "5512481632",
       email: "carrasco@example.com"
     },
     {
       id: __clientId++,
-      firstNames: "Sansón",
-      lastNames: "Carrasco",
+      firstName: "Sansón",
+      lastName: "Carrasco",
       telephone: "3312345678",
       email: "carrasco@example.com"
     },
     {
       id: __clientId++,
-      firstNames: "Cristián",
-      lastNames: "de la Rosa Cruz",
+      firstName: "Cristián",
+      lastName: "de la Rosa Cruz",
       telephone: "8111235813",
       email: "crc@example.net"
     },
     {
       id: __clientId++,
-      firstNames: "Ximena",
-      lastNames: "Yépez Zapata",
+      firstName: "Ximena",
+      lastName: "Yépez Zapata",
       telephone: "5512481632",
       email: "carrasco@example.com"
     },
