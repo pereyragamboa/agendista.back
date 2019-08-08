@@ -1,9 +1,8 @@
-const fs = require('fs');
 const { importSchema } = require('graphql-import');
 const clientResolvers = require('./resolvers');
 
 module.exports = {
-  typeDefs: importSchema(fs.readFileSync('src/clients/schema.graphql').toString()),
+  typeDefs: importSchema('src/clients/schema.graphql'),
   resolvers: {
     Query: {
       getAllClients: clientResolvers.getAllClients,
