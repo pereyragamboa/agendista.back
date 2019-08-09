@@ -9,7 +9,6 @@ function getService(serviceId) {
 }
 
 function addService(newService) {
-  console.log(newService);
   if (typeof newService === 'object'){
     const addedService = { id: getServiceId(), ...newService };
     services.push(addedService);
@@ -35,9 +34,7 @@ function updateService(serviceId, service) {
 }
 
 function deleteService(serviceId) {
-  console.log(" > " + serviceId);
   const deleteIndex = services.findIndex(service => service.id === Number.parseInt(serviceId));
-  console.log(" > " + deleteIndex);
   if (deleteIndex >= 0) {
     services.splice(deleteIndex, 1);
     return true;
