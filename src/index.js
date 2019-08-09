@@ -1,9 +1,12 @@
 const { ApolloServer } = require('apollo-server');
+const { buildFederatedSchema } = require('@apollo/federation');
 const services = require('./services');
 const clients = require('./clients/index');
 
 const clientsServer = new ApolloServer(clients);
-const servicesServer = new ApolloServer(services);
+const servicesServer = new ApolloServer({
+  schema: buildFederatedSchema([{...services}])
+});
 
 let port = 4000;
 try {

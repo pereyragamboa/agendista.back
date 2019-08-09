@@ -3,7 +3,7 @@ schema {
     mutation: Mutation
 }
 
-type Service {
+type Service @key(fields: "id") {
     id: ID!
     name: String!
     description: String

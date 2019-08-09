@@ -1,7 +1,8 @@
-const { importSchema } = require('graphql-import');
+const fs = require('fs');
+const { gql } = require('apollo-server');
 const resolvers = require('./resolvers');
 
-const typeDefs = importSchema('src/services/schema.graphql');
+const typeDefs = gql(fs.readFileSync('./src/services/schema.graphql').toString());
 
 const clientResolvers = {
   Query:{
@@ -12,6 +13,11 @@ const clientResolvers = {
     addService: (parent, args) => resolvers.addService(args.newService),
     deleteService: (parent, args) => resolvers.deleteService(args.serviceId),
     updateService: (parent, args) => resolvers.updateService(args.serviceId, args.service),
+  },
+  Service: {
+    __resolveReference(service, { fetchServiceById }){
+      return fetchServiceById(service.id);
+    }
   }
 };
 
