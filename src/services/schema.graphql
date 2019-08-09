@@ -1,0 +1,30 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Service {
+    id: ID!
+    name: String!
+    description: String
+    duration: Int!
+    price: Float!
+}
+
+input ServiceInput {
+    name: String
+    description: String
+    duration: Int
+    price: Float
+}
+
+type Query{
+    getAllServices: [Service!]
+    getService (serviceId: ID!): Service
+}
+
+type Mutation{
+    addService (newService: ServiceInput!): Service!
+    updateService (serviceId: ID!, service: ServiceInput!): Service
+    deleteService (serviceId: ID!): Boolean!
+}
