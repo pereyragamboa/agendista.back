@@ -36,3 +36,34 @@ mutation updateService {
 mutation deleteService {
   deleteService(serviceId: "0x10001")
 }
+
+query getClients{getAllClients{
+  id firstName lastName
+}}
+
+query getClient{getClient(clientId:"131073"){
+  id firstName lastName
+}}
+
+mutation addClient{addClient( client:{
+  firstName: "Martín",
+  lastName: "Pereyra",
+  email: "pereyra.gamboa@example.com",
+  telephone: "3355779911"
+}){
+  id firstName lastName
+}}
+
+mutation updateClient{
+  updateClient(
+    clientId: "131077",
+    client: {
+      lastName: "Pereyra Gamboa",
+      email: "pereyra.gamboa@example.com",
+      telephone: "3355779911"
+    }){
+    firstName lastName email
+  }
+}
+
+mutation deleteClient { deleteClient( clientId: "131075")}
