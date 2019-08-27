@@ -1,5 +1,6 @@
 let __serviceId = 0x10001;
 let __clientId = 0x20001;
+let __profileId = 0x30001;
 
 module.exports = {
   services: [
@@ -23,6 +24,26 @@ module.exports = {
       description: "Todos los servicios",
       duration: 90,
       price: 300
+    },
+  ],
+  profiles: [
+    {
+      id: __profileId++,
+      businessName: "Goldberg Gezelshaft",
+      url: "https://www.goldberg.test/",
+      email: "info@goldberg.test",
+      telephone: "3311224488"
+    },
+    {
+      id: __profileId++,
+      businessName: "Licenciado Valeriano",
+      email: "lv@example.test",
+      telephone: "5543214321"
+    },
+    {
+      id: __profileId++,
+      businessName: "Estética Froufrou",
+      telephone: "8172635445"
     },
   ],
   clients: [
