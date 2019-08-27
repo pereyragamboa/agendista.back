@@ -2,7 +2,7 @@ const fs = require('fs');
 const { gql } = require('apollo-server');
 const resolvers = require('./resolvers');
 
-const typeDefs = gql(fs.readFileSync('./src/services/schema.graphql').toString());
+const typeDefs = gql(fs.readFileSync('./src/services/schema.graphqls').toString());
 
 const clientResolvers = {
   Query:{

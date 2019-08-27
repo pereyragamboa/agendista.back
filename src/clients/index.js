@@ -3,7 +3,7 @@ const { gql } = require('apollo-server');
 const clientResolvers = require('./resolvers');
 
 module.exports = {
-  typeDefs: gql(fs.readFileSync('./src/clients/schema.graphql').toString()),
+  typeDefs: gql(fs.readFileSync('./src/clients/schema.graphqls').toString()),
   resolvers: {
     Query: {
       getAllClients: clientResolvers.getAllClients,
