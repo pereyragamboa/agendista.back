@@ -2,7 +2,28 @@ let __serviceId = 0x10001;
 let __clientId = 0x20001;
 let __profileId = 0x30001;
 
-module.exports = {
+const getProfileId = () => __profileId++;
+
+const profiles = [
+  {
+    businessName: "Goldberg Gezelshaft",
+    url: "https://www.goldberg.test/",
+    email: "info@goldberg.test",
+    telephone: "3311224488"
+  },
+  {
+    businessName: "Licenciado Valeriano",
+    email: "lv@example.test",
+    telephone: "5543214321"
+  },
+  {
+    businessName: "Estética Froufrou",
+    telephone: "8172635445"
+  },
+];
+
+  module.exports = {
+    profiles: profiles.map(profile => { profile.id = getProfileId(); return profile; }),
   services: [
     {
       id: __serviceId++,
@@ -25,25 +46,19 @@ module.exports = {
       duration: 90,
       price: 300
     },
-  ],
-  profiles: [
     {
-      id: __profileId++,
-      businessName: "Goldberg Gezelshaft",
-      url: "https://www.goldberg.test/",
-      email: "info@goldberg.test",
-      telephone: "3311224488"
+      id: __serviceId++,
+      name: "Consulta fiscal",
+      description: "Asesoría en materia fiscal",
+      duration: 60,
+      price: 500
     },
     {
-      id: __profileId++,
-      businessName: "Licenciado Valeriano",
-      email: "lv@example.test",
-      telephone: "5543214321"
-    },
-    {
-      id: __profileId++,
-      businessName: "Estética Froufrou",
-      telephone: "8172635445"
+      id: __serviceId++,
+      name: "Consulta fiscal",
+      description: "Asesoría en materia fiscal",
+      duration: 60,
+      price: 500
     },
   ],
   clients: [
@@ -78,5 +93,4 @@ module.exports = {
   ],
 
   getClientId: () => __clientId++,
-  getServiceId: () => __serviceId++,
-};
+  getServiceId: () => __serviceId++};
