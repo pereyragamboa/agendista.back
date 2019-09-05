@@ -9,6 +9,11 @@ type Profile @key(fields: "id") {
     url: String
     telephone: String!
     email: String
+    services: [Service!]!
+}
+
+extend type Service @key(fields: "id") {
+    id: ID!
 }
 
 input ProfileInput {

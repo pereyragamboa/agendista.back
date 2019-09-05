@@ -15,6 +15,14 @@ module.exports = {
     Profile: {
       __resolveReference(profile, { fetchById }){
         return fetchById(profile.id);
+      },
+      services(profile) {
+        return { __typeName: "Service", id: profile.services };
+      },
+      Service: {
+        __resolveReference(reference) {
+          return fetchServiceById(reference.id);
+        }
       }
     }
   }
