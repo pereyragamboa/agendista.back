@@ -9,11 +9,11 @@ type Profile @key(fields: "id") {
     url: String
     telephone: String!
     email: String
-    services: [Service!]!
+    services: [Service]!
 }
 
 extend type Service @key(fields: "id") {
-    id: ID!
+    id: ID! @external
 }
 
 input ProfileInput {
@@ -24,11 +24,11 @@ input ProfileInput {
 }
 
 type Query {
-    getProfile(id: ID!): Profile
+    getProfile(profileId: ID!): Profile
 }
 
 type Mutation {
     addProfile(profile: ProfileInput): Profile!
-    updateProfile(id: ID!, profile: ProfileInput): Profile!
-    deleteProfile(id: ID!): Boolean!
+    updateProfile(profileId: ID!, profile: ProfileInput): Profile!
+    deleteProfile(profileId: ID!): Boolean!
 }
