@@ -4,7 +4,7 @@ const resolvers = require('./resolvers');
 
 const typeDefs = gql(fs.readFileSync('./src/services/schema.graphqls').toString());
 
-const clientResolvers = {
+const serviceResolvers = {
   Query:{
     getAllServices: resolvers.getAllServices,
     getService: (parent, args) => resolvers.getService(args.serviceId),
@@ -15,10 +15,10 @@ const clientResolvers = {
     updateService: (parent, args) => resolvers.updateService(args.serviceId, args.service),
   },
   Service: {
-    __resolveReference(service, { fetchServiceById }){
-      return fetchServiceById(service.id);
+    __resolveReference(reference) {
+      return resolvers.getService(reference.id);
     }
-  }
+  },
 };
 
-module.exports = { typeDefs, resolvers: clientResolvers };
+module.exports = { typeDefs, resolvers: serviceResolvers };

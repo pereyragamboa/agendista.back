@@ -8,6 +8,10 @@ function getService(serviceId) {
   return services.find(service => Number.parseInt(serviceId) === service.id);
 }
 
+function getServicesByProfile(profileId) {
+  return services.filter(service => service.profileId === Number.parseInt(profileId));
+}
+
 function addService(newService) {
   if (typeof newService === 'object'){
     const addedService = { id: getServiceId(), ...newService };
@@ -43,5 +47,5 @@ function deleteService(serviceId) {
 }
 
 module.exports = {
-  addService, deleteService, getAllServices, getService, updateService
+  addService, deleteService, getAllServices, getService, getServicesByProfile, updateService
 };
