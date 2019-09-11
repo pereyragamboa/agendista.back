@@ -3,13 +3,14 @@ let __clientId = 0x20001;
 let __profileId = 0x30001;
 
 const getProfileId = () => __profileId++;
+const getServiceId = () => __serviceId++;
 
 const profiles = [
   {
     businessName: "Goldberg Gezelshaft",
     url: "https://www.goldberg.test/",
     email: "info@goldberg.test",
-    telephone: "3311224488"
+    telephone: "3311224488",
   },
   {
     businessName: "Licenciado Valeriano",
@@ -22,45 +23,53 @@ const profiles = [
   },
 ];
 
-  module.exports = {
-    profiles: profiles.map(profile => { profile.id = getProfileId(); return profile; }),
-  services: [
-    {
-      id: __serviceId++,
-      name: "Servicio básico",
-      description: "Servicio primario",
-      duration: 30,
-      price: 100
-    },
-    {
-      id: __serviceId++,
-      name: "Servicio medio",
-      description: "Servicio primario y ajustes",
-      duration: 60,
-      price: 200
-    },
-    {
-      id: __serviceId++,
-      name: "Servicio completo",
-      description: "Todos los servicios",
-      duration: 90,
-      price: 300
-    },
-    {
-      id: __serviceId++,
-      name: "Consulta fiscal",
-      description: "Asesoría en materia fiscal",
-      duration: 60,
-      price: 500
-    },
-    {
-      id: __serviceId++,
-      name: "Consulta fiscal",
-      description: "Asesoría en materia fiscal",
-      duration: 60,
-      price: 500
-    },
-  ],
+const services = [
+  {
+    name: "Servicio básico",
+    description: "Servicio primario",
+    duration: 30,
+    price: 100
+  },
+  {
+    name: "Servicio medio",
+    description: "Servicio primario y ajustes",
+    duration: 60,
+    price: 200
+  },
+  {
+    name: "Servicio completo",
+    description: "Todos los servicios",
+    duration: 90,
+    price: 300
+  },
+  {
+    profileId: 0x30001,
+    name: "Consulta fiscal",
+    description: "Asesoría en materia fiscal",
+    duration: 60,
+    price: 500
+  },
+  {
+    profileId: 0x30001,
+    name: "Consulta contable",
+    description: "Asesoría en materia contable",
+    duration: 60,
+    price: 400
+  },
+  {
+    profileId: 0x30001,
+    name: "Consulta legal",
+    description: "Asesoría en derecho mercantil",
+    duration: 60,
+    price: 600
+  },
+];
+
+module.exports = {
+  // Adds IDs to profiles
+  profiles: profiles.map(profile => { profile.id = getProfileId(); return profile; }),
+  // Adds IDs to services
+  services: services.map(service => { service.id = getServiceId(); return service; }),
   clients: [
     {
       id: __clientId++,
@@ -93,4 +102,5 @@ const profiles = [
   ],
 
   getClientId: () => __clientId++,
-  getServiceId: () => __serviceId++};
+  getServiceId
+};
