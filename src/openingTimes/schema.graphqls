@@ -1,0 +1,39 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type OpeningTimes @key(fields: "id") {
+    id: ID!
+    dayOfWeek: DayOfWeek!
+    startTime: Time!
+    endTime: Time!
+}
+
+input OpeningTimesInput {
+    dayOfWeek: DayOfWeek!
+    startTime: Time!
+    endTime: Time!
+}
+
+extend type Profile @key(fields: "id") {
+    id: ID! @external
+}
+
+scalar Time
+
+enum DayOfWeek {
+    WEEKDAYS
+    SATURDAY
+    SUNDAY
+}
+
+type Query {
+    getOpeningTimes(profile: Profile!, dayOfWeek: DayOfWeek): [OpeningTimes]
+}
+
+type Mutation {
+    addOpeningTimes(openingTimes: OpeningTimesInput): OpeningTimes!
+    deleteOpeningTimes(timesId: ID!): Boolean!
+    updateOpeningTimes(timesId: ID!, openingTimes: OpeningTimesInput): OpeningTimes!
+}

@@ -10,9 +10,14 @@ type Profile @key(fields: "id") {
     telephone: String!
     email: String
     services: [Service]!
+    openingTimes: [OpeningTimes]!
 }
 
 extend type Service @key(fields: "id") {
+    id: ID! @external
+}
+
+extend type OpeningTimes @key(fields: "id") {
     id: ID! @external
 }
 
