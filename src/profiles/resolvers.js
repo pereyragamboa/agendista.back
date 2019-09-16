@@ -1,4 +1,5 @@
 const { profiles } = require('../mockData');
+const { compareIndex } = require('../utils/compareIndex');
 
 function getProfile(profileId) {
   return profiles.find(profile => compareIndex(profile, profileId));
@@ -21,10 +22,6 @@ function updateProfile(profileId, profile) {
     return update;
   }
   return null;
-}
-
-function compareIndex(profile, profileId) {
-  return profile.id === Number.parseInt(profileId);
 }
 
 module.exports = {
