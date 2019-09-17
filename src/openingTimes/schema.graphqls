@@ -8,6 +8,7 @@ type OpeningTimes @key(fields: "id") {
     dayOfWeek: DayOfWeek!
     startTime: Time!
     endTime: Time!
+    Profile: Profile!
 }
 
 input OpeningTimesInput {
@@ -29,7 +30,7 @@ enum DayOfWeek {
 }
 
 type Query {
-    getOpeningTimes(profile: Profile!, dayOfWeek: DayOfWeek): [OpeningTimes]
+    getOpeningTimes(timesId: ID!, dayOfWeek: DayOfWeek): [OpeningTimes]
 }
 
 type Mutation {

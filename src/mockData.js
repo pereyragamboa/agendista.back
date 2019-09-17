@@ -1,9 +1,16 @@
 let __serviceId = 0x10001;
 let __clientId = 0x20001;
 let __profileId = 0x30001;
+let __openingTimesId = 0x40001;
+
+let MILLISECONDS_PER_HOUR = 60 * 60 * 1000;
+let SATURDAY = 6;
+let SUNDAY = 0;
+let WEEKDAYS = 8;
 
 const getProfileId = () => __profileId++;
 const getServiceId = () => __serviceId++;
+const getOpeningTimesId = () => __openingTimesId++;
 
 const profiles = [
   {
@@ -11,11 +18,29 @@ const profiles = [
     url: "https://www.goldberg.test/",
     email: "info@goldberg.test",
     telephone: "3311224488",
+    openingTimes: [
+      {
+        dayOfWeek: WEEKDAYS,
+        startTime: 9 * MILLISECONDS_PER_HOUR,
+        endTime: 18 * MILLISECONDS_PER_HOUR
+      },{
+        dayOfWeek: SATURDAY,
+        startTime: 9 * MILLISECONDS_PER_HOUR,
+        endTime: 13 * MILLISECONDS_PER_HOUR
+      }
+    ]
   },
   {
     businessName: "Licenciado Valeriano",
     email: "lv@example.test",
-    telephone: "5543214321"
+    telephone: "5543214321",
+    openingTimes: [
+      {
+        dayOfWeek: WEEKDAYS,
+        startTime: 8 * MILLISECONDS_PER_HOUR,
+        endTime: 17 * MILLISECONDS_PER_HOUR
+      },
+    ]
   },
   {
     businessName: "Estética Froufrou",
@@ -67,7 +92,15 @@ const services = [
 
 module.exports = {
   // Adds IDs to profiles
-  profiles: profiles.map(profile => { profile.id = getProfileId(); return profile; }),
+  profiles: profiles.map(profile => {
+    profile.id = getProfileId();
+    if (profile.openingTimes) {
+      profile.openingTimes.map(times => {
+        times.id = getOpeningTimesId();
+        return times;
+      });
+    }
+    return profile; }),
   // Adds IDs to services
   services: services.map(service => { service.id = getServiceId(); return service; }),
   clients: [
@@ -102,5 +135,6 @@ module.exports = {
   ],
 
   getClientId: () => __clientId++,
+  getOpeningTimesId,
   getServiceId
 };
