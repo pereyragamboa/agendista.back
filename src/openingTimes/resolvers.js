@@ -23,10 +23,15 @@ function deleteOpeningTimes(timesId) {
   return false;
 }
 
-function getOpeningTimes(profileId, dayOfWeek) {
+function getOpeningTimes(timesId) {
+  return profiles.flatMap(profile => profile.openingTimes)
+                 .find(times => compareIndex(times, timesId));
+}
+
+function getProfileOpeningTimes(profileId, dayOfWeek) {
   return profiles.find(
       profile => compareIndex(profile, profileId)
-  ).filter(
+  ).openingTimes.filter(
       times => dayOfWeek === undefined || times.dayOfWeek === dayOfWeek
   );
 }
@@ -51,5 +56,6 @@ module.exports = {
   addOpeningTimes,
   deleteOpeningTimes,
   getOpeningTimes,
+  getProfileOpeningTimes,
   updateOpeningTimes
 };

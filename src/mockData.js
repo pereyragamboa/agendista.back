@@ -4,9 +4,9 @@ let __profileId = 0x30001;
 let __openingTimesId = 0x40001;
 
 let MILLISECONDS_PER_HOUR = 60 * 60 * 1000;
-let SATURDAY = 6;
-let SUNDAY = 0;
-let WEEKDAYS = 8;
+let SATURDAY = 'SATURDAY';
+let SUNDAY = 'SUNDAY';
+let WEEKDAYS = 'WEEKDAYS';
 
 const getProfileId = () => __profileId++;
 const getServiceId = () => __serviceId++;
