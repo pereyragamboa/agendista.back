@@ -1,0 +1,52 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+interface Holiday {
+    id: ID!
+    month: Month!
+}
+
+enum Month {
+    JANUARY
+    FEBRUARY
+    MARCH
+    APRIL
+    MAY
+    JUNE
+    JULY
+    AUGUST
+    SEPTEMBER
+    OCTOBER
+    NOVEMBER
+    DECEMBER
+}
+
+enum DayOfWeek {
+    SUNDAY
+    MONDAY
+    TUESDAY
+    WEDNESDAY
+    THURSDAY
+    FRIDAY
+    SATURDAY
+}
+
+type FixedHoliday implements Holiday {
+    day: Int!
+}
+
+type VariableHoliday implements Holiday {
+    week: Int!
+    dayOfWeek: DayOfWeek!
+}
+
+type Query {
+    getHolidays(profileId: ID!): [Holiday!]
+}
+
+type Mutation {
+    addHoliday(profileId: ID!): Holiday
+    deleteHoliday(holidayId: ID!): Boolean!
+}
