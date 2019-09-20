@@ -34,10 +34,14 @@ enum DayOfWeek {
 }
 
 type FixedHoliday implements Holiday {
+    id: ID!
+    month: Month!
     day: Int!
 }
 
 type VariableHoliday implements Holiday {
+    id: ID!
+    month: Month!
     week: Int!
     dayOfWeek: DayOfWeek!
 }
