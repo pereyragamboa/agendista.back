@@ -2,6 +2,7 @@ let __serviceId = 0x10001;
 let __clientId = 0x20001;
 let __profileId = 0x30001;
 let __openingTimesId = 0x40001;
+let __holidayId = 0x50001;
 
 let MILLISECONDS_PER_HOUR = 60 * 60 * 1000;
 let SATURDAY = 'SATURDAY';
@@ -11,6 +12,7 @@ let WEEKDAYS = 'WEEKDAYS';
 const getProfileId = () => __profileId++;
 const getServiceId = () => __serviceId++;
 const getOpeningTimesId = () => __openingTimesId++;
+const getHolidayId = () => __holidayId++;
 
 const profiles = [
   {
@@ -28,6 +30,11 @@ const profiles = [
         startTime: 9 * MILLISECONDS_PER_HOUR,
         endTime: 13 * MILLISECONDS_PER_HOUR
       }
+    ],
+    holidays: [
+      { month: 1, day: 1 },
+      { month: 5, day: 1 },
+      { month: 9, day: 16 },
     ]
   },
   {
@@ -40,6 +47,11 @@ const profiles = [
         startTime: 8 * MILLISECONDS_PER_HOUR,
         endTime: 17 * MILLISECONDS_PER_HOUR
       },
+    ],
+    holidays: [
+      { month: 2, week: 1, day: 2 },
+      { month: 11, week: 3, day: 2 },
+      { month: 12, day: 25 }
     ]
   },
   {
@@ -94,10 +106,18 @@ module.exports = {
   // Adds IDs to profiles
   profiles: profiles.map(profile => {
     profile.id = getProfileId();
+    // Adds IDs to business hours
     if (profile.openingTimes) {
       profile.openingTimes.map(times => {
         times.id = getOpeningTimesId();
         return times;
+      });
+    }
+    // Adds IDs to holidays
+    if (profile.holidays) {
+      profile.holidays.map(holiday => {
+        holiday.id = getHolidayId();
+        return holiday;
       });
     }
     return profile; }),
