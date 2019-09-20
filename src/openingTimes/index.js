@@ -1,18 +1,17 @@
 const fs = require('fs');
 const { gql } = require('apollo-server');
 const timesResolvers = require('./resolvers');
-const { daysOfWeek } = require('../mockData');
 
 module.exports = {
   typeDefs: gql(fs.readFileSync('./src/openingTimes/schema.graphqls').toString()),
   resolvers: {
     Query: {
-      getProfileOpeningTimes: (parent, args) => timesResolvers.getProfileOpeningTimes(
+      getOpeningTimes: (parent, args) => timesResolvers.getOpeningTimesByProfile(
           args.profileId, args.dayOfWeek)
     },
     Mutation: {
       addOpeningTimes: (parent, args) =>
-          timesResolvers.addOpeningTimes(args.openingTimes),
+          timesResolvers.addOpeningTimes(args.profileId, args.openingTimes),
       deleteOpeningTimes: (parent, args) =>
           timesResolvers.deleteOpeningTimes(args.timesId),
       updateOpeningTimes: (parent, args) =>
@@ -20,6 +19,7 @@ module.exports = {
     },
     OpeningTimes: {
       __resolveReference(reference) {
+        console.log("Resolving OpeningTimes reference...");
         return timesResolvers.getOpeningTimes(reference.id);
       },
     }

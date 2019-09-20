@@ -1,11 +1,14 @@
 const { profiles, getOpeningTimesId } = require('../mockData');
 const { compareIndex } = require('../utils/compareIndex');
 
-function addOpeningTimes(openingTimes) {
-  const targetProfile = profiles.find(compareIndex(profile, openingTimes.profile.id));
-  openingTimes.id = getOpeningTimesId();
-  targetProfile.openingTimes.add(openingTimes);
-  return openingTimes;
+function addOpeningTimes(profileId, openingTimes) {
+  const targetProfile = profiles.find(profile => compareIndex(profile, profileId));
+  if (targetProfile !== undefined) {
+    openingTimes.id = getOpeningTimesId();
+    targetProfile.openingTimes.push(openingTimes);
+    return openingTimes;
+  }
+  return null;
 }
 
 function deleteOpeningTimes(timesId) {
@@ -28,7 +31,7 @@ function getOpeningTimes(timesId) {
                  .find(times => compareIndex(times, timesId));
 }
 
-function getProfileOpeningTimes(profileId, dayOfWeek) {
+function getOpeningTimesByProfile(profileId, dayOfWeek) {
   return profiles.find(
       profile => compareIndex(profile, profileId)
   ).openingTimes.filter(
@@ -45,7 +48,11 @@ function updateOpeningTimes(timesId, times) {
         return timesIndex >= 0;
       });
   if (targetProfile !== undefined) {
-    const update = { ...targetProfile.openingTimes[timesIndex], ...times};
+    const update = {
+      ...targetProfile.openingTimes[timesIndex],
+      ...times,
+      profile: { id: targetProfile.id}
+    };
     targetProfile.openingTimes[timesIndex] = update;
     return update;
   }
@@ -56,6 +63,6 @@ module.exports = {
   addOpeningTimes,
   deleteOpeningTimes,
   getOpeningTimes,
-  getProfileOpeningTimes,
+  getOpeningTimesByProfile,
   updateOpeningTimes
 };

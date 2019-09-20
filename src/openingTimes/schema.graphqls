@@ -15,7 +15,6 @@ input OpeningTimesInput {
     dayOfWeek: DayOfWeek!
     startTime: Time!
     endTime: Time!
-    profile: Profile!
 }
 
 extend type Profile @key(fields: "id") {
@@ -31,11 +30,11 @@ enum DayOfWeek {
 }
 
 type Query {
-    getProfileOpeningTimes(profileId: ID!, dayOfWeek: DayOfWeek): [OpeningTimes]
+    getOpeningTimes(profileId: ID!, dayOfWeek: DayOfWeek): [OpeningTimes]
 }
 
 type Mutation {
-    addOpeningTimes(openingTimes: OpeningTimesInput): OpeningTimes!
+    addOpeningTimes(profileId: ID!, openingTimes: OpeningTimesInput): OpeningTimes
     deleteOpeningTimes(timesId: ID!): Boolean!
-    updateOpeningTimes(timesId: ID!, openingTimes: OpeningTimesInput): OpeningTimes!
+    updateOpeningTimes(timesId: ID!, openingTimes: OpeningTimesInput): OpeningTimes
 }
