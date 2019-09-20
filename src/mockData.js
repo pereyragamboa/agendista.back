@@ -22,11 +22,11 @@ const profiles = [
     telephone: "3311224488",
     openingTimes: [
       {
-        dayOfWeek: WEEKDAYS,
+        day: WEEKDAYS,
         startTime: 9 * MILLISECONDS_PER_HOUR,
         endTime: 18 * MILLISECONDS_PER_HOUR
       },{
-        dayOfWeek: SATURDAY,
+        day: SATURDAY,
         startTime: 9 * MILLISECONDS_PER_HOUR,
         endTime: 13 * MILLISECONDS_PER_HOUR
       }
@@ -43,7 +43,7 @@ const profiles = [
     telephone: "5543214321",
     openingTimes: [
       {
-        dayOfWeek: WEEKDAYS,
+        day: WEEKDAYS,
         startTime: 8 * MILLISECONDS_PER_HOUR,
         endTime: 17 * MILLISECONDS_PER_HOUR
       },
@@ -112,6 +112,8 @@ module.exports = {
         times.id = getOpeningTimesId();
         return times;
       });
+    } else {
+      profile.openingTimes = [];
     }
     // Adds IDs to holidays
     if (profile.holidays) {
@@ -119,6 +121,8 @@ module.exports = {
         holiday.id = getHolidayId();
         return holiday;
       });
+    } else {
+      profile.holidays = [];
     }
     return profile; }),
   // Adds IDs to services

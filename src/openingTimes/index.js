@@ -7,7 +7,7 @@ module.exports = {
   resolvers: {
     Query: {
       getOpeningTimes: (parent, args) => timesResolvers.getOpeningTimesByProfile(
-          args.profileId, args.dayOfWeek)
+          args.profileId, args.businessDay)
     },
     Mutation: {
       addOpeningTimes: (parent, args) =>
@@ -15,7 +15,7 @@ module.exports = {
       deleteOpeningTimes: (parent, args) =>
           timesResolvers.deleteOpeningTimes(args.timesId),
       updateOpeningTimes: (parent, args) =>
-          timesResolvers.updateOpeningTimes(args.timesId, args.times)
+          timesResolvers.updateOpeningTimes(args.timesId, args.openingTimes)
     },
     OpeningTimes: {
       __resolveReference(reference) {

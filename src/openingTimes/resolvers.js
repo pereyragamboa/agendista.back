@@ -6,6 +6,7 @@ function addOpeningTimes(profileId, openingTimes) {
   if (targetProfile !== undefined) {
     openingTimes.id = getOpeningTimesId();
     targetProfile.openingTimes.push(openingTimes);
+    openingTimes.profile = { id: profileId };
     return openingTimes;
   }
   return null;
@@ -31,12 +32,12 @@ function getOpeningTimes(timesId) {
                  .find(times => compareIndex(times, timesId));
 }
 
-function getOpeningTimesByProfile(profileId, dayOfWeek) {
+function getOpeningTimesByProfile(profileId, businessDay) {
   return profiles.find(
       profile => compareIndex(profile, profileId)
   ).openingTimes.filter(
-      times => dayOfWeek === undefined || times.dayOfWeek === dayOfWeek
-  );
+      times => businessDay === undefined || times.day === businessDay
+  ).map(times => { return { ...times, profile: { profileId } }});
 }
 
 function updateOpeningTimes(timesId, times) {
@@ -44,14 +45,13 @@ function updateOpeningTimes(timesId, times) {
   const targetProfile = profiles.find(
       profile => {
         timesIndex = profile.openingTimes.findIndex(
-            times => compareIndex(times, timesId));
+            t => compareIndex(t, timesId));
         return timesIndex >= 0;
       });
   if (targetProfile !== undefined) {
     const update = {
       ...targetProfile.openingTimes[timesIndex],
-      ...times,
-      profile: { id: targetProfile.id}
+      ...times
     };
     targetProfile.openingTimes[timesIndex] = update;
     return update;

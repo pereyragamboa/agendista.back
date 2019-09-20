@@ -5,14 +5,14 @@ schema {
 
 type OpeningTimes @key(fields: "id") {
     id: ID!
-    dayOfWeek: DayOfWeek!
+    day: BusinessDay!
     startTime: Time!
     endTime: Time!
     profile: Profile!
 }
 
 input OpeningTimesInput {
-    dayOfWeek: DayOfWeek!
+    day: BusinessDay!
     startTime: Time!
     endTime: Time!
 }
@@ -23,14 +23,14 @@ extend type Profile @key(fields: "id") {
 
 scalar Time
 
-enum DayOfWeek {
+enum BusinessDay {
     WEEKDAYS
     SATURDAY
     SUNDAY
 }
 
 type Query {
-    getOpeningTimes(profileId: ID!, dayOfWeek: DayOfWeek): [OpeningTimes]
+    getOpeningTimes(profileId: ID!, businessDay: BusinessDay): [OpeningTimes]
 }
 
 type Mutation {
