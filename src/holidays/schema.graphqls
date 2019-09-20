@@ -42,11 +42,23 @@ type VariableHoliday implements Holiday {
     dayOfWeek: DayOfWeek!
 }
 
+input FixedHolidayInput {
+    month: Month!
+    day: Int!
+}
+
+input VariableHolidayInput {
+    month: Month!
+    week: Int!
+    dayOfWeek: DayOfWeek!
+}
+
 type Query {
     getHolidays(profileId: ID!): [Holiday!]
 }
 
 type Mutation {
-    addHoliday(profileId: ID!): Holiday
+    addFixedHoliday(profileId: ID!, holiday: FixedHolidayInput): FixedHoliday
+    addVariableHoliday(profileId: ID!, holiday: VariableHolidayInput): VariableHoliday
     deleteHoliday(holidayId: ID!): Boolean!
 }
