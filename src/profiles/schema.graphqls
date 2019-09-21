@@ -11,6 +11,11 @@ type Profile @key(fields: "id") {
     email: String
     services: [Service]!
     openingTimes: [OpeningTimes]!
+    holidays: [Holiday]!
+}
+
+extend interface Holiday @key(fields: "id") {
+    id: ID! @external
 }
 
 extend type Service @key(fields: "id") {

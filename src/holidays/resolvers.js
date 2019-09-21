@@ -1,5 +1,5 @@
 const { profiles, getHolidayId } = require('../mockData');
-const compareIndex = require('../utils/compareIndex');
+const { compareIndex } = require('../utils/compareIndex');
 
 function addHoliday(profileId, holiday) {
   const profile = profiles.find(profile => compareIndex(profile, profileId));

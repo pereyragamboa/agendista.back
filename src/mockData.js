@@ -32,9 +32,9 @@ const profiles = [
       }
     ],
     holidays: [
-      { month: 1, day: 1 },
-      { month: 5, day: 1 },
-      { month: 9, day: 16 },
+      { month: 'JANUARY', day: 1 },
+      { month: 'MAY', day: 1 },
+      { month: 'SEPTEMBER', day: 16 },
     ]
   },
   {
@@ -49,9 +49,9 @@ const profiles = [
       },
     ],
     holidays: [
-      { month: 2, week: 1, day: 2 },
-      { month: 11, week: 3, day: 2 },
-      { month: 12, day: 25 }
+      { month: 'FEBRUARY', week: 1, dayOfWeek: 'MONDAY' },
+      { month: 'NOVEMBER', week: 3, dayOfWeek: 'MONDAY' },
+      { month: 'DECEMBER', day: 25 }
     ]
   },
   {
@@ -159,6 +159,7 @@ module.exports = {
   ],
 
   getClientId: () => __clientId++,
+  getHolidayId,
   getOpeningTimesId,
   getServiceId
 };
