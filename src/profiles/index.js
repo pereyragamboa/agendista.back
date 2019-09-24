@@ -2,7 +2,6 @@ const fs = require('fs');
 const { gql } = require('apollo-server');
 const profileResolvers = require('./resolvers');
 const { getServicesByProfile } = require('../services/resolvers');
-const { getOpeningTimesByProfile } = require('../openingTimes/resolvers');
 
 module.exports = {
   typeDefs: gql(fs.readFileSync('./src/profiles/schema.graphqls').toString()),
@@ -16,14 +15,17 @@ module.exports = {
     },
     Profile: {
       __resolveReference(reference){
-        console.log("Resolving Profile reference...");
         return profileResolvers.getProfile(reference.id);
       },
       services(profile) {
         return getServicesByProfile(profile.id);
       },
-      openingTimes(profile) {
-        return getOpeningTimesByProfile(profile.id);
+    },
+    Holiday: {
+      __resolveType(obj) {
+        if (obj.day) return 'FixedHoliday';
+        else if (obj.week) return 'VariableHoliday';
+        else return null;
       }
     }
   }

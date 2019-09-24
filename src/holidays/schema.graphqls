@@ -3,7 +3,7 @@ schema {
     mutation: Mutation
 }
 
-interface Holiday {
+interface Holiday @key(fields: "id") {
     id: ID!
     month: Month!
 }
@@ -33,13 +33,13 @@ enum DayOfWeek {
     SATURDAY
 }
 
-type FixedHoliday implements Holiday {
+type FixedHoliday implements Holiday @key(fields: "id") {
     id: ID!
     month: Month!
     day: Int!
 }
 
-type VariableHoliday implements Holiday {
+type VariableHoliday implements Holiday @key(fields: "id") {
     id: ID!
     month: Month!
     week: Int!

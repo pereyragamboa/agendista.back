@@ -18,6 +18,14 @@ extend interface Holiday @key(fields: "id") {
     id: ID! @external
 }
 
+extend type FixedHoliday implements Holiday @key(fields: "id") {
+    id: ID! @external
+}
+
+extend type VariableHoliday implements Holiday @key(fields: "id") {
+    id: ID! @external
+}
+
 extend type Service @key(fields: "id") {
     id: ID! @external
 }

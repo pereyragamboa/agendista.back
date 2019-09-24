@@ -19,7 +19,6 @@ module.exports = {
     },
     OpeningTimes: {
       __resolveReference(reference) {
-        console.log("Resolving OpeningTimes reference...");
         return timesResolvers.getOpeningTimes(reference.id);
       },
     }

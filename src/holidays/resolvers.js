@@ -28,6 +28,15 @@ function deleteHoliday(holidayId) {
   return false;
 }
 
+function getHoliday(holidayId) {
+  let holiday = undefined;
+  profiles.find(p => {
+    holiday = p.holidays.find(h => compareIndex(h, holidayId));
+    return holiday !== undefined;
+  });
+  return holiday === undefined ? null : holiday;
+}
+
 function getHolidays(profileId) {
   const profile = profiles.find(profile => compareIndex(profile, profileId));
   if (profile !== undefined) {
@@ -37,5 +46,5 @@ function getHolidays(profileId) {
 }
 
 module.exports = {
-  addHoliday, deleteHoliday, getHolidays
+  addHoliday, deleteHoliday, getHoliday, getHolidays
 };

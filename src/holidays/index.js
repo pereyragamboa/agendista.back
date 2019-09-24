@@ -14,11 +14,21 @@ module.exports = {
       deleteHoliday: (parent, args) => holidayResolvers.deleteHoliday(args.holidayId)
     },
     Holiday: {
-      __resolveType(holiday) {
-        if (holiday.day) return 'FixedHoliday';
-        else if (holiday.week) return 'VariableHoliday';
+      __resolveType(obj) {
+        if (obj.day) return 'FixedHoliday';
+        else if (obj.week) return 'VariableHoliday';
         else return null;
       }
     },
+    FixedHoliday: {
+      __resolveReference(reference) {
+        return holidayResolvers.getHoliday(reference.id);
+      }
+    },
+    VariableHoliday: {
+      __resolveReference(reference) {
+        return holidayResolvers.getHoliday(reference.id);
+      }
+    }
   }
 };
