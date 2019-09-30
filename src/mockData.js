@@ -35,6 +35,10 @@ const profiles = [
       { month: 'JANUARY', day: 1 },
       { month: 'MAY', day: 1 },
       { month: 'SEPTEMBER', day: 16 },
+    ],
+    leaves: [
+      { from: Date.UTC(2020, 2, 10), to: Date.UTC(2020, 2, 20) },
+      { from: Date.UTC(2020, 5, 1), to: Date.UTC(2020, 5, 15) },
     ]
   },
   {
@@ -52,6 +56,10 @@ const profiles = [
       { month: 'FEBRUARY', week: 1, dayOfWeek: 'MONDAY' },
       { month: 'NOVEMBER', week: 3, dayOfWeek: 'MONDAY' },
       { month: 'DECEMBER', day: 25 }
+    ],
+    leaves: [
+      { from: Date.UTC(2020, 2, 21), to: Date.UTC(2020, 3, 21) },
+      { from: Date.UTC(2020, 8, 14), to: Date.UTC(2020, 8, 18) }
     ]
   },
   {
