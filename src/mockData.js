@@ -3,6 +3,7 @@ let __clientId = 0x20001;
 let __profileId = 0x30001;
 let __openingTimesId = 0x40001;
 let __holidayId = 0x50001;
+let __leaveId = 0x60001;
 
 let MILLISECONDS_PER_HOUR = 60 * 60 * 1000;
 let SATURDAY = 'SATURDAY';
@@ -13,6 +14,7 @@ const getProfileId = () => __profileId++;
 const getServiceId = () => __serviceId++;
 const getOpeningTimesId = () => __openingTimesId++;
 const getHolidayId = () => __holidayId++;
+const getLeaveId = () => __leaveId++;
 
 const profiles = [
   {
@@ -132,6 +134,14 @@ module.exports = {
     } else {
       profile.holidays = [];
     }
+    // Adds IDs to leaves
+    if (profile.leaves) {
+      profile.leaves.forEach(leave => {
+        leave.id = getLeaveId();
+      });
+    } else {
+      profile.leaves = [];
+    }
     return profile; }),
   // Adds IDs to services
   services: services.map(service => { service.id = getServiceId(); return service; }),
@@ -169,5 +179,6 @@ module.exports = {
   getClientId: () => __clientId++,
   getHolidayId,
   getOpeningTimesId,
-  getServiceId
+  getServiceId,
+  getLeaveId
 };
