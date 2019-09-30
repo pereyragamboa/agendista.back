@@ -12,6 +12,11 @@ type Profile @key(fields: "id") {
     services: [Service]!
     businessHours: [BusinessHours]!
     holidays: [Holiday]!
+    leaves: [Leave]!
+}
+
+extend type BusinessHours @key(fields: "id") {
+    id: ID! @external
 }
 
 extend interface Holiday @key(fields: "id") {
@@ -26,11 +31,11 @@ extend type VariableHoliday implements Holiday @key(fields: "id") {
     id: ID! @external
 }
 
-extend type Service @key(fields: "id") {
+extend type Leave @key(fields: "id") {
     id: ID! @external
 }
 
-extend type BusinessHours @key(fields: "id") {
+extend type Service @key(fields: "id") {
     id: ID! @external
 }
 
