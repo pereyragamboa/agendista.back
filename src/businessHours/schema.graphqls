@@ -3,7 +3,7 @@ schema {
     mutation: Mutation
 }
 
-type OpeningTimes @key(fields: "id") {
+type BusinessHours @key(fields: "id") {
     id: ID!
     day: BusinessDay!
     startTime: Time!
@@ -11,7 +11,7 @@ type OpeningTimes @key(fields: "id") {
     profile: Profile!
 }
 
-input OpeningTimesInput {
+input BusinessHoursInput {
     day: BusinessDay!
     startTime: Time!
     endTime: Time!
@@ -30,11 +30,11 @@ enum BusinessDay {
 }
 
 type Query {
-    getOpeningTimes(profileId: ID!, businessDay: BusinessDay): [OpeningTimes]
+    getBusinessHours(profileId: ID!, businessDay: BusinessDay): [BusinessHours]
 }
 
 type Mutation {
-    addOpeningTimes(profileId: ID!, openingTimes: OpeningTimesInput): OpeningTimes
-    deleteOpeningTimes(timesId: ID!): Boolean!
-    updateOpeningTimes(timesId: ID!, openingTimes: OpeningTimesInput): OpeningTimes
+    addBusinessHours(profileId: ID!, businessHours: BusinessHoursInput): BusinessHours
+    deleteBusinessHours(timesId: ID!): Boolean!
+    updateBusinessHours(timesId: ID!, businessHours: BusinessHoursInput): BusinessHours
 }

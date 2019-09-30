@@ -1,18 +1,18 @@
 const { profiles, getOpeningTimesId } = require('../mockData');
 const { compareIndex } = require('../utils/compareIndex');
 
-function addOpeningTimes(profileId, openingTimes) {
+function addBusinessHours(profileId, businessHours) {
   const targetProfile = profiles.find(profile => compareIndex(profile, profileId));
   if (targetProfile !== undefined) {
-    openingTimes.id = getOpeningTimesId();
-    targetProfile.openingTimes.push(openingTimes);
-    openingTimes.profile = { id: profileId };
-    return openingTimes;
+    businessHours.id = getOpeningTimesId();
+    targetProfile.openingTimes.push(businessHours);
+    businessHours.profile = { id: profileId };
+    return businessHours;
   }
   return null;
 }
 
-function deleteOpeningTimes(timesId) {
+function deleteBusinessHours(timesId) {
   let timesIndex = -1;
   const targetProfile = profiles.find(
       profile => {
@@ -27,12 +27,13 @@ function deleteOpeningTimes(timesId) {
   return false;
 }
 
-function getOpeningTimes(timesId) {
+function getBusinessHours(timesId) {
   return profiles.flatMap(profile => profile.openingTimes)
                  .find(times => compareIndex(times, timesId));
 }
 
-function getOpeningTimesByProfile(profileId, businessDay) {
+function getBusinessHoursByProfile(profileId, businessDay) {
+  console.log(`\tGetting business hours for ${profileId}...`);
   return profiles.find(
       profile => compareIndex(profile, profileId)
   ).openingTimes.filter(
@@ -40,7 +41,7 @@ function getOpeningTimesByProfile(profileId, businessDay) {
   ).map(times => { return { ...times, profile: { profileId } }});
 }
 
-function updateOpeningTimes(timesId, times) {
+function updateBusinessHours(timesId, businessHours) {
   let timesIndex = -1;
   const targetProfile = profiles.find(
       profile => {
@@ -51,7 +52,7 @@ function updateOpeningTimes(timesId, times) {
   if (targetProfile !== undefined) {
     const update = {
       ...targetProfile.openingTimes[timesIndex],
-      ...times
+      ...businessHours
     };
     targetProfile.openingTimes[timesIndex] = update;
     return update;
@@ -60,9 +61,9 @@ function updateOpeningTimes(timesId, times) {
 }
 
 module.exports = {
-  addOpeningTimes,
-  deleteOpeningTimes,
-  getOpeningTimes,
-  getOpeningTimesByProfile,
-  updateOpeningTimes
+  addBusinessHours,
+  deleteBusinessHours,
+  getBusinessHours,
+  getBusinessHoursByProfile,
+  updateBusinessHours
 };

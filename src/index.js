@@ -3,7 +3,7 @@ const { ApolloServer } = require('apollo-server');
 const { buildFederatedSchema } = require('@apollo/federation');
 const clients = require('./clients');
 const holidays = require('./holidays');
-const openingTimes = require('./openingTimes');
+const businessHours = require('./businessHours');
 const profiles = require('./profiles');
 const services = require('./services');
 
@@ -13,8 +13,8 @@ const clientsServer = new ApolloServer({
 const holidayServer = new ApolloServer({
   schema: buildFederatedSchema([{ ...holidays }])
 });
-const openingTimesServer = new ApolloServer({
-  schema: buildFederatedSchema([{ ...openingTimes }])
+const businessHoursServer = new ApolloServer({
+  schema: buildFederatedSchema([{ ...businessHours }])
 });
 const profilesServer = new ApolloServer({
   schema: buildFederatedSchema([{ ...profiles}])
@@ -29,7 +29,7 @@ const start = async () =>
 {
   serviceList.push(await startServer(clientsServer, "clients"));
   serviceList.push(await startServer(holidayServer, "holidays"));
-  serviceList.push(await startServer(openingTimesServer, "openingTimes"));
+  serviceList.push(await startServer(businessHoursServer, "businessHours"));
   serviceList.push(await startServer(profilesServer, "profiles"));
   serviceList.push(await startServer(servicesServer, "services"));
   const gateway = new ApolloGateway({ serviceList });

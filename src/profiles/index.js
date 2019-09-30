@@ -20,6 +20,9 @@ module.exports = {
       services(profile) {
         return getServicesByProfile(profile.id);
       },
+      businessHours(profile) {
+        return profileResolvers.getProfile(profile.id).openingTimes;
+      }
     },
     Holiday: {
       __resolveType(obj) {
