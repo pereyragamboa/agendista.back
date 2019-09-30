@@ -19,12 +19,12 @@ input ServiceInput {
 }
 
 type Query{
-    getAllServices: [Service!]
+    getServices (profileId: ID!): [Service!]
     getService (serviceId: ID!): Service
 }
 
 type Mutation{
-    addService (newService: ServiceInput!): Service!
+    addService (profileId: ID!, newService: ServiceInput!): Service!
     updateService (serviceId: ID!, service: ServiceInput!): Service
     deleteService (serviceId: ID!): Boolean!
 }

@@ -5,13 +5,13 @@ schema {
 
 type Leave @key(fields: "id") {
     id: ID!
-    from: Date
-    to: Date
+    from: Date!
+    to: Date!
 }
 
 input LeaveInput {
-    from: Date
-    to: Date
+    from: Date!
+    to: Date!
 }
 
 scalar Date
@@ -22,5 +22,5 @@ type Query {
 
 type Mutation {
     addLeave(profileId: ID!, leave: LeaveInput): Leave
-    deleteLeave(leaveId: ID!): Boolean
+    deleteLeave(leaveId: ID!): Boolean!
 }

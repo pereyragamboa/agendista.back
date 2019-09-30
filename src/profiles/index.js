@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { gql } = require('apollo-server');
 const profileResolvers = require('./resolvers');
-const { getServicesByProfile } = require('../services/resolvers');
+const { getServices } = require('../services/resolvers');
 
 module.exports = {
   typeDefs: gql(fs.readFileSync('./src/profiles/schema.graphqls').toString()),
@@ -18,7 +18,7 @@ module.exports = {
         return profileResolvers.getProfile(reference.id);
       },
       services(profile) {
-        return getServicesByProfile(profile.id);
+        return getServices(profile.id);
       },
       businessHours(profile) {
         return profileResolvers.getProfile(profile.id).openingTimes;

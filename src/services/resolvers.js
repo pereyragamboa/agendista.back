@@ -1,23 +1,20 @@
-const { services, getServiceId } = require('../mockData');
-
-function getAllServices() {
-  return services;
-}
+const { services, profiles, getServiceId } = require('../mockData');
+const { compareIndex } = require('../utils/compareIndex');
 
 function getService(serviceId) {
-  return services.find(service => Number.parseInt(serviceId) === service.id);
+  return services.find(service => compareIndex(service, serviceId));
 }
 
 function getServicesByProfile(profileId) {
   return services.filter(service => service.profileId === Number.parseInt(profileId));
 }
 
-function addService(newService) {
-  if (typeof newService === 'object'){
-    const addedService = { id: getServiceId(), ...newService };
+function addService(profileId, newService) {
+  if (typeof newService === 'object' && profiles.find(p => compareIndex(p, profileId))) {
+    const addedService = { id: getServiceId(), profileId, ...newService };
     services.push(addedService);
     return addedService;
-  }
+  } else return null;
 }
 
 function updateService(serviceId, service) {
@@ -47,5 +44,5 @@ function deleteService(serviceId) {
 }
 
 module.exports = {
-  addService, deleteService, getAllServices, getService, getServicesByProfile, updateService
+  addService, deleteService, getService, getServices: getServicesByProfile, updateService
 };
