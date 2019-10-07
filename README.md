@@ -6,4 +6,11 @@ with a GraphQL service for each domain entity, even though all of them access th
 
 This project is the complement of [agendista.web]().
 
-Development mode runs with `npm run dev`.
+## Getting started
+
+For starting the proyect, use `npm run start`. For development, use `npm run dev`.
+
+## Built with
+
+* [Apollo Server](https://www.apollographql.com/docs/apollo-server) - GraphQL server
+* [Nodemon](http://nodemon.io/) - File monitor, used for development

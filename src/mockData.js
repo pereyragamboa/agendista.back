@@ -18,7 +18,7 @@ const getLeaveId = () => __leaveId++;
 
 const profiles = [
   {
-    businessName: "Goldberg Gezelshaft",
+    businessName: "Goldberg Gesellschaft",
     url: "https://www.goldberg.test/",
     email: "info@goldberg.test",
     telephone: "3311224488",
@@ -65,7 +65,7 @@ const profiles = [
     ]
   },
   {
-    businessName: "Estética Froufrou",
+    businessName: "Estética Fifí",
     telephone: "8172635445"
   },
 ];
