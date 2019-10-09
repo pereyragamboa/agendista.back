@@ -1,0 +1,44 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Appointment @key(fields: "id") {
+    id: ID!
+    customer: Customer!
+    services: [Service!]!
+    date: Int
+    Time: Int
+}
+
+input AppointmentInput {
+    customer: Customer!
+    provider: Provider!
+    services: [Service!]!
+    date: Int
+    Time: Int
+}
+
+extend type Customer @key(fields: "id") {
+    id: ID!
+}
+
+extend type Provider @key(fields: "id") {
+    id: ID!
+}
+
+extend type Service @key(fields: "id") {
+    id: ID!
+}
+
+type Query {
+    getAppointment(appointmentId: ID!): Appointment!
+    getCustomerAppointments(customerId: ID!): [Appointment!]!
+    getProviderAppointments(providerId: ID!): [Appointment!]!
+}
+
+type Mutation {
+    addAppointment(appointment: AppointmentInput): Appointment!
+    cancelAppointment(appointmentId: ID!): Boolean!
+    updateAppointment(appointmentId: ID!, update: AppointmentInput): Appointment!
+}
