@@ -4,6 +4,7 @@ let __profileId = 0x30001;
 let __openingTimesId = 0x40001;
 let __holidayId = 0x50001;
 let __leaveId = 0x60001;
+let __appointmentId = 0x70001;
 
 let MILLISECONDS_PER_HOUR = 60 * 60 * 1000;
 let SATURDAY = 'SATURDAY';
@@ -15,6 +16,28 @@ const getServiceId = () => __serviceId++;
 const getOpeningTimesId = () => __openingTimesId++;
 const getHolidayId = () => __holidayId++;
 const getLeaveId = () => __leaveId++;
+const getAppointmentId = () => __appointmentId++;
+
+const appointments = [
+  {
+    customerId: 0x20002,
+    profileId: 0x30001,
+    serviceIds: [ 0x10001, 0x10003 ],
+    date: new Date(2019, 10, 11, 12, 0, 0)
+  },
+  {
+    customerId: 0x20001,
+    profileId: 0x30001,
+    serviceIds: [ 0x10001, 0x10002 ],
+    date: new Date(2019, 10, 1, 18, 30, 0)
+  },
+  {
+    customerId: 0x20004,
+    profileId: 0x30002,
+    servicesId: [ 0x10004 ],
+    date: new Date(2020, 0, 15, 22, 30, 0)
+  }
+];
 
 const profiles = [
   {
@@ -72,39 +95,42 @@ const profiles = [
 
 const services = [
   {
+    profileId: 0x30001,
     name: "Servicio básico",
     description: "Servicio primario",
     duration: 30,
     price: 100
   },
   {
+    profileId: 0x30001,
     name: "Servicio medio",
     description: "Servicio primario y ajustes",
     duration: 60,
     price: 200
   },
   {
+    profileId: 0x30001,
     name: "Servicio completo",
     description: "Todos los servicios",
     duration: 90,
     price: 300
   },
   {
-    profileId: 0x30001,
+    profileId: 0x30002,
     name: "Consulta fiscal",
     description: "Asesoría en materia fiscal",
     duration: 60,
     price: 500
   },
   {
-    profileId: 0x30001,
+    profileId: 0x30002,
     name: "Consulta contable",
     description: "Asesoría en materia contable",
     duration: 60,
     price: 400
   },
   {
-    profileId: 0x30001,
+    profileId: 0x30002,
     name: "Consulta legal",
     description: "Asesoría en derecho mercantil",
     duration: 60,
@@ -143,8 +169,13 @@ module.exports = {
       profile.leaves = [];
     }
     return profile; }),
+
   // Adds IDs to services
   services: services.map(service => { service.id = getServiceId(); return service; }),
+
+  // Adds IDs to appointments
+  appointments: appointments.map(appointment => { appointment.id = getServiceId(); return appointment }),
+
   clients: [
     {
       id: __clientId++,
@@ -176,6 +207,7 @@ module.exports = {
     },
   ],
 
+  getAppointmentId,
   getClientId: () => __clientId++,
   getHolidayId,
   getOpeningTimesId,
