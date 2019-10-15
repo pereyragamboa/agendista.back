@@ -1,9 +1,9 @@
 const fs = require('fs');
-const gql = require('apollo-server');
+const { gql } = require('apollo-server');
 const appointmentResolvers = require('./resolvers');
 
 module.exports = {
-  typeDefs: gql(fs.readFileSync("/src/appointments/schema.graphqls").toString()),
+  typeDefs: gql(fs.readFileSync("./src/appointments/schema.graphqls").toString()),
   resolvers: {
     Query: {
       getAppointment: (_, args) => appointmentResolvers.getAppointment(args.appointmentId),

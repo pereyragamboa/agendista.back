@@ -18,11 +18,15 @@ function cancelAppointment(appointmentId) {
 }
 
 function getAppointment(appointmentId) {
-  return appointments.find(appointment => compareIndex(appointment, appointmentId));
+  return setAppointmentObjects(
+      appointments.find(appointment => compareIndex(appointment, appointmentId))
+  );
 }
 
 function getCustomerAppointments(customerId) {
-  return appointments.filter(appointment => appointment.customerId === Number.parseInt(customerId));
+  return appointments
+    .filter(appointment => appointment.customerId === Number.parseInt(customerId))
+    .map(appointment => setAppointmentObjects(appointment));
 }
 
 function getProfileAppointments(profileId) {
@@ -37,6 +41,11 @@ function updateAppointment(appointmentId, appointment) {
     return newAppointment;
   }
   return null;
+}
+
+function setAppointmentObjects(appointment) {
+  appointment.customer = { id: appointment.customerId };
+  return appointment;
 }
 
 module.exports = {

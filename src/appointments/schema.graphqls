@@ -6,29 +6,29 @@ schema {
 type Appointment @key(fields: "id") {
     id: ID!
     customer: Customer!
-#    profile: Profile!
-#    services: [Service!]!
+    profile: Profile!
+    services: [Service!]!
     date: Int
 }
 
 input AppointmentInput {
-    customer: Customer!
-    profile: Profile!
-    services: [Service!]!
+    customer: ID!
+    profile: ID!
+    services: [ID!]!
     date: Int
     Time: Int
 }
 
 extend type Customer @key(fields: "id") {
-    id: ID!
+    id: ID! @external
 }
 
 extend type Profile @key(fields: "id") {
-    id: ID!
+    id: ID! @external
 }
 
 extend type Service @key(fields: "id") {
-    id: ID!
+    id: ID! @external
 }
 
 type Query {

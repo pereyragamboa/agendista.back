@@ -1,6 +1,7 @@
 const { ApolloGateway } = require('@apollo/gateway');
 const { ApolloServer } = require('apollo-server');
 const { buildFederatedSchema } = require('@apollo/federation');
+const appointments = require('./appointments');
 const customers = require('./customers');
 const businessHours = require('./businessHours');
 const holidays = require('./holidays');
@@ -8,6 +9,9 @@ const leaves = require('./leaves');
 const profiles = require('./profiles');
 const services = require('./services');
 
+const appointmentServer = new ApolloServer({
+  schema: buildFederatedSchema([appointments])
+});
 const customerServer = new ApolloServer({
   schema: buildFederatedSchema([{ ...customers }])
 });
@@ -31,6 +35,7 @@ let port = 4000;
 const serviceList = [];
 const start = async () =>
 {
+  serviceList.push(await startServer(appointmentServer, "appointments"));
   serviceList.push(await startServer(customerServer, "customers"));
   serviceList.push(await startServer(businessHoursServer, "businessHours"));
   serviceList.push(await startServer(holidayServer, "holidays"));
