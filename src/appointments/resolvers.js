@@ -29,7 +29,7 @@ function getProfileAppointments(profileId) {
   return appointments.filter(appointment => appointment.profileId === Number.parseInt(profileId));
 }
 
-function updateProfile(appointmentId, appointment) {
+function updateAppointment(appointmentId, appointment) {
   const index = appointments.findIndex(appointment => compareIndex(appointment, appointmentId));
   if (index >= 0) {
     const newAppointment = { ...appointments[index], appointment };
@@ -42,5 +42,5 @@ function updateProfile(appointmentId, appointment) {
 module.exports = {
   addAppointment, cancelAppointment,
   getAppointment, getCustomerAppointments,
-  getProfileAppointments, updateProfile
+  getProfileAppointments, updateAppointment
 };
