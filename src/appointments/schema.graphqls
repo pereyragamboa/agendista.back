@@ -34,7 +34,7 @@ extend type Service @key(fields: "id") {
 type Query {
     getAppointment(appointmentId: ID!): Appointment!
     getCustomerAppointments(customerId: ID!): [Appointment!]!
-    getProviderAppointments(providerId: ID!): [Appointment!]!
+    getProfileAppointments(profileId: ID!): [Appointment!]!
 }
 
 type Mutation {
