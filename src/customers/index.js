@@ -15,8 +15,8 @@ module.exports = {
       updateCustomer: (parent, args) => customerResolvers.updateCustomer(args.clientId, args.client),
     },
     Customer: {
-      __resolveReference(client, { fetchById }){
-        return fetchById(client.id);
+      __resolveReference(client){
+        return customerResolvers.getCustomer(client.id);
       }
     }
   }
