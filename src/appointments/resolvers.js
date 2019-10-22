@@ -2,16 +2,17 @@ const { appointments, getAppointmentId } = require("../mockData");
 const { compareIndex } = require("../utils/compareIndex");
 
 function addAppointment(appointment) {
-  appointment.id = getAppointmentId();
-  appointments.push(appointment);
-  return appointment;
+  const newAppointment = getAppointmentFromInput(appointment);
+  newAppointment.id = getAppointmentId();
+  appointments.push(newAppointment);
+  return setAppointmentObjects(newAppointment);
 }
 
 function cancelAppointment(appointmentId) {
   const index = appointments.findIndex(appointment => compareIndex(appointment, appointmentId));
 
   if (index >= 0) {
-    appointments.splice(index, 0);
+    appointments.splice(index, 1);
     return true;
   }
   return false;
@@ -37,9 +38,9 @@ function getProfileAppointments(profileId) {
 function updateAppointment(appointmentId, appointment) {
   const index = appointments.findIndex(appointment => compareIndex(appointment, appointmentId));
   if (index >= 0) {
-    const newAppointment = { ...appointments[index], appointment };
-    appointment[index] = newAppointment;
-    return newAppointment;
+    const newAppointment = { ...appointments[index], ...getAppointmentFromInput(appointment) };
+    appointments[index] = newAppointment;
+    return setAppointmentObjects(newAppointment);
   }
   return null;
 }
@@ -47,13 +48,20 @@ function updateAppointment(appointmentId, appointment) {
 function setAppointmentObjects(appointment) {
   appointment.customer = { id: appointment.customerId };
   appointment.profile = { id: appointment.profileId };
-  console.log(appointment.serviceIds);
   if (appointment.serviceIds)
     appointment.services = appointment.serviceIds.map(id => { return { id } });
   else
     appointment.services = [];
-  console.log(appointment.services);
   return appointment;
+}
+
+function getAppointmentFromInput(appointmentInput) {
+  return {
+    date : appointmentInput.date,
+    customerId : Number.parseInt(appointmentInput.customer),
+    profileId: Number.parseInt(appointmentInput.profile),
+    serviceIds : appointmentInput.services.map (s => Number.parseInt(s))
+  };
 }
 
 module.exports = {

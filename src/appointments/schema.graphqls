@@ -16,7 +16,6 @@ input AppointmentInput {
     profile: ID!
     services: [ID!]!
     date: Int
-    Time: Int
 }
 
 extend type Customer @key(fields: "id") {

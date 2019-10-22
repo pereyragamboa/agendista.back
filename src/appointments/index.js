@@ -13,7 +13,7 @@ module.exports = {
     Mutation: {
       addAppointment: (_, args) => appointmentResolvers.addAppointment(args.appointment),
       cancelAppointment: (_, args) => appointmentResolvers.cancelAppointment(args.appointmentId),
-      updateAppointment: (_, args) => appointmentResolvers.updateAppointment(args.appointmentId, args.appointment)
+      updateAppointment: (_, args) => appointmentResolvers.updateAppointment(args.appointmentId, args.update)
     }
   }
 };
