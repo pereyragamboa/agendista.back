@@ -27,17 +27,14 @@ const appointments = [
   },
   {
     customerId: 0x20001,
-    profile: { id: 0x30001 },
-    services: [
-      { id: 0x10001 },
-      { id: 0x10002 }
-    ],
+    profileId: 0x30001,
+    serviceIds: [ 0x10001, 0x10002 ],
     date: Date.UTC(2019, 10, 1, 18, 30, 0) / 1000
   },
   {
     customerId: 0x20004,
     profileId: 0x30002,
-    servicesId: [ 0x10004 ],
+    serviceIds: [ 0x10004 ],
     date: Date.UTC(2020, 0, 15, 22, 30, 0) / 1000
   }
 ];
@@ -177,7 +174,7 @@ module.exports = {
   services: services.map(service => { service.id = getServiceId(); return service; }),
 
   // Adds IDs to appointments
-  appointments: appointments.map(appointment => { appointment.id = getServiceId(); return appointment }),
+  appointments: appointments.map(appointment => { appointment.id = getAppointmentId(); return appointment }),
 
   clients: [
     {

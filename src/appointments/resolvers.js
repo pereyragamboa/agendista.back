@@ -18,9 +18,8 @@ function cancelAppointment(appointmentId) {
 }
 
 function getAppointment(appointmentId) {
-  return setAppointmentObjects(
-      appointments.find(appointment => compareIndex(appointment, appointmentId))
-  );
+  const appointment = appointments.find(a => compareIndex(a, appointmentId));
+  return appointment ? setAppointmentObjects(appointment) : null;
 }
 
 function getCustomerAppointments(customerId) {
@@ -30,7 +29,9 @@ function getCustomerAppointments(customerId) {
 }
 
 function getProfileAppointments(profileId) {
-  return appointments.filter(appointment => appointment.profileId === Number.parseInt(profileId));
+  return appointments
+    .filter(appointment => appointment.profileId === Number.parseInt(profileId))
+    .map(appointment => setAppointmentObjects(appointment));
 }
 
 function updateAppointment(appointmentId, appointment) {
@@ -45,6 +46,13 @@ function updateAppointment(appointmentId, appointment) {
 
 function setAppointmentObjects(appointment) {
   appointment.customer = { id: appointment.customerId };
+  appointment.profile = { id: appointment.profileId };
+  console.log(appointment.serviceIds);
+  if (appointment.serviceIds)
+    appointment.services = appointment.serviceIds.map(id => { return { id } });
+  else
+    appointment.services = [];
+  console.log(appointment.services);
   return appointment;
 }
 
