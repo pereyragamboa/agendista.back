@@ -59,10 +59,13 @@ input VariableHolidayInput {
 
 type Query {
     getHolidays(profileId: ID!): [Holiday!]
+    getHoliday(holidayId: ID!): Holiday
 }
 
 type Mutation {
     addFixedHoliday(profileId: ID!, holiday: FixedHolidayInput): FixedHoliday
     addVariableHoliday(profileId: ID!, holiday: VariableHolidayInput): VariableHoliday
     deleteHoliday(holidayId: ID!): Boolean!
+    updateFixedHoliday(holidayId: ID!, holiday: FixedHolidayInput): FixedHoliday
+    updateVariableHoliday(holidayId: ID!, holiday: VariableHolidayInput): VariableHoliday
 }

@@ -60,7 +60,7 @@ const profiles = [
       { month: 'JANUARY', day: 1 },
       { month: 'MAY', day: 1 },
       { month: 'SEPTEMBER', day: 16 },
-      { month: 'JUNE', week: 2, dayOfWeek: 1}
+      { month: 'JUNE', week: 2, dayOfWeek: 'MONDAY'}
     ],
     leaves: [
       { from: Date.UTC(2020, 2, 10), to: Date.UTC(2020, 2, 20) },

@@ -6,12 +6,15 @@ module.exports = {
   typeDefs: gql(fs.readFileSync('./src/holidays/schema.graphqls').toString()),
   resolvers: {
     Query: {
-      getHolidays: (parent, args) => holidayResolvers.getHolidays(args.profileId)
+      getHolidays: (parent, args) => holidayResolvers.getHolidays(args.profileId),
+      getHoliday: (parent, args) => holidayResolvers.getHoliday(args.holidayId)
     },
     Mutation: {
       addFixedHoliday: (parent, args) => holidayResolvers.addHoliday(args.profileId, args.holiday),
       addVariableHoliday: (parent, args) => holidayResolvers.addHoliday(args.profileId, args.holiday),
-      deleteHoliday: (parent, args) => holidayResolvers.deleteHoliday(args.holidayId)
+      deleteHoliday: (parent, args) => holidayResolvers.deleteHoliday(args.holidayId),
+      updateFixedHoliday: (parent, args) => holidayResolvers.updateHoliday(args.holidayId, args.holiday),
+      updateVariableHoliday: (parent, args) => holidayResolvers.updateHoliday(args.holidayId, args.holiday),
     },
     Holiday: {
       __resolveType(obj) {

@@ -45,6 +45,24 @@ function getHolidays(profileId) {
   return [];
 }
 
+function updateHoliday(holidayId, holiday) {
+  let holidayIndex = -1;
+  const profile = profiles.find(
+      p => {
+        if (p.holidays === undefined) return false;
+        holidayIndex = p.holidays.findIndex(
+            h => compareIndex(h, holidayId));
+        return holidayId >= 0;
+      }
+  );
+  if (profile !== undefined) {
+    const newHoliday = { id: holidayId, ...holiday };
+    profile.holidays[holidayIndex] = newHoliday;
+    return newHoliday;
+  }
+  return null;
+}
+
 module.exports = {
-  addHoliday, deleteHoliday, getHoliday, getHolidays
+  addHoliday, deleteHoliday, getHoliday, getHolidays, updateHoliday
 };
