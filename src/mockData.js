@@ -60,6 +60,7 @@ const profiles = [
       { month: 'JANUARY', day: 1 },
       { month: 'MAY', day: 1 },
       { month: 'SEPTEMBER', day: 16 },
+      { month: 'JUNE', week: 2, dayOfWeek: 1}
     ],
     leaves: [
       { from: Date.UTC(2020, 2, 10), to: Date.UTC(2020, 2, 20) },
@@ -182,7 +183,7 @@ module.exports = {
       firstName: "Alicia",
       lastName: "Bernal Cienfuegos",
       telephone: "5512481632",
-      email: "carrasco@example.com"
+      email: "abc@example.org"
     },
     {
       id: __clientId++,
@@ -203,7 +204,7 @@ module.exports = {
       firstName: "Ximena",
       lastName: "Yépez Zapata",
       telephone: "5512481632",
-      email: "carrasco@example.com"
+      email: "xyz@example.io"
     },
   ],
 
