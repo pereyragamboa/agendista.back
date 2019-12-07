@@ -23,4 +23,5 @@ type Query {
 type Mutation {
     addLeave(profileId: ID!, leave: LeaveInput): Leave
     deleteLeave(leaveId: ID!): Boolean!
+    updateLeave(leaveId: ID!, leave: LeaveInput): Leave
 }

@@ -10,7 +10,8 @@ module.exports = {
     },
     Mutation: {
       addLeave: (parent, args) => leaveResolvers.addLeave(args.profileId, args.leave),
-      deleteLeave: (parent, args) => leaveResolvers.deleteLeave(args.leaveId)
+      deleteLeave: (parent, args) => leaveResolvers.deleteLeave(args.leaveId),
+      updateLeave: (parent, args) => leaveResolvers.updateLeave(args.leaveId, args.leave)
     },
     Leave: {
       __resolveReference(object) {

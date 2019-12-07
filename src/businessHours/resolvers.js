@@ -33,7 +33,6 @@ function getBusinessHours(timesId) {
 }
 
 function getBusinessHoursByProfile(profileId, businessDay) {
-  console.log(`\tGetting business hours for ${profileId}...`);
   return profiles.find(
       profile => compareIndex(profile, profileId)
   ).openingTimes.filter(

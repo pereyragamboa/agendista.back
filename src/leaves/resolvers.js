@@ -37,4 +37,18 @@ function getLeaves(profileId) {
   return profile.leaves;
 }
 
-module.exports = { addLeave, deleteLeave, getLeave, getLeaves };
+function updateLeave(leaveId, leave) {
+  let leaveIndex = -1;
+  const profileIndex = profiles.findIndex(p => {
+    leaveIndex = p.leaves.findIndex(l => compareIndex(l, leaveId));
+    return leaveIndex >= 0;
+  });
+  if (profileIndex >= 0) {
+    const newLeave = { id: leaveId, ...leave };
+    profiles[profileIndex].leaves[leaveIndex] = newLeave;
+    return newLeave;
+  }
+  return null;
+}
+
+module.exports = { addLeave, deleteLeave, getLeave, getLeaves, updateLeave };
