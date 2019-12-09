@@ -44,7 +44,7 @@ function updateLeave(leaveId, leave) {
     return leaveIndex >= 0;
   });
   if (profileIndex >= 0) {
-    const newLeave = { id: leaveId, ...leave };
+    const newLeave = { id: Number.parseInt(leaveId), ...leave };
     profiles[profileIndex].leaves[leaveIndex] = newLeave;
     return newLeave;
   }

@@ -7,6 +7,7 @@ module.exports = {
   resolvers: {
     Query: {
       getLeaves: (parent, args) => leaveResolvers.getLeaves(args.profileId),
+      getLeave: (parent, args) => leaveResolvers.getLeave(args.leaveId)
     },
     Mutation: {
       addLeave: (parent, args) => leaveResolvers.addLeave(args.profileId, args.leave),
