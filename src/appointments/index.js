@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { gql } = require('apollo-server');
 const appointmentResolvers = require('./resolvers');
+const { Date } = require('../scalars/dateResolver');
 
 module.exports = {
   typeDefs: gql(fs.readFileSync("./src/appointments/schema.graphqls").toString()),
@@ -14,6 +15,7 @@ module.exports = {
       addAppointment: (_, args) => appointmentResolvers.addAppointment(args.appointment),
       cancelAppointment: (_, args) => appointmentResolvers.cancelAppointment(args.appointmentId),
       updateAppointment: (_, args) => appointmentResolvers.updateAppointment(args.appointmentId, args.update)
-    }
+    },
+    Date
   }
 };

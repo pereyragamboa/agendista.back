@@ -23,19 +23,19 @@ const appointments = [
     customerId: 0x20002,
     profileId: 0x30001,
     serviceIds: [ 0x10001, 0x10003 ],
-    date: Date.UTC(2019, 10, 11, 12, 0, 0) / 1000
+    date: new Date(2019, 10, 11, 12, 0, 0)
   },
   {
     customerId: 0x20001,
     profileId: 0x30001,
     serviceIds: [ 0x10001, 0x10002 ],
-    date: Date.UTC(2019, 10, 1, 18, 30, 0) / 1000
+    date: new Date(2019, 10, 1, 18, 30, 0)
   },
   {
     customerId: 0x20004,
     profileId: 0x30002,
     serviceIds: [ 0x10004 ],
-    date: Date.UTC(2020, 0, 15, 22, 30, 0) / 1000
+    date: new Date(2020, 0, 15, 22, 30, 0)
   }
 ];
 

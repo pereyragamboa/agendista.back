@@ -67,5 +67,5 @@ function getAppointmentFromInput(appointmentInput) {
 module.exports = {
   addAppointment, cancelAppointment,
   getAppointment, getCustomerAppointments,
-  getProfileAppointments, updateAppointment
+  getProfileAppointments, updateAppointment,
 };

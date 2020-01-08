@@ -8,14 +8,16 @@ type Appointment @key(fields: "id") {
     customer: Customer!
     profile: Profile!
     services: [Service!]!
-    date: Int
+    date: Date
 }
+
+scalar Date
 
 input AppointmentInput {
     customer: ID!
     profile: ID!
     services: [ID!]!
-    date: Int
+    date: Date
 }
 
 extend type Customer @key(fields: "id") {
