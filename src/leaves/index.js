@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { gql } = require('apollo-server');
 const leaveResolvers = require('./resolvers');
+const { Date } = require('../scalars/dateResolver');
 
 module.exports = {
   typeDefs: gql(fs.readFileSync('./src/leaves/schema.graphqls').toString()),
@@ -18,6 +19,7 @@ module.exports = {
       __resolveReference(object) {
         return leaveResolvers.getLeave(object.id);
       }
-    }
+    },
+    Date
   }
 };
