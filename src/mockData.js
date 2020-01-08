@@ -6,7 +6,6 @@ let __holidayId = 0x50001;
 let __leaveId = 0x60001;
 let __appointmentId = 0x70001;
 
-let MILLISECONDS_PER_HOUR = 60 * 60 * 1000;
 let SATURDAY = 'SATURDAY';
 let SUNDAY = 'SUNDAY';
 let WEEKDAYS = 'WEEKDAYS';
@@ -48,12 +47,12 @@ const profiles = [
     openingTimes: [
       {
         day: WEEKDAYS,
-        startTime: 9 * MILLISECONDS_PER_HOUR,
-        endTime: 18 * MILLISECONDS_PER_HOUR
+        startTime: "09:00",
+        endTime: "18:00"
       },{
         day: SATURDAY,
-        startTime: 9 * MILLISECONDS_PER_HOUR,
-        endTime: 13 * MILLISECONDS_PER_HOUR
+        startTime: "09:00",
+        endTime: "13:00"
       }
     ],
     holidays: [
@@ -65,8 +64,6 @@ const profiles = [
     leaves: [
       { from: new Date("2020-03-10Z"), to: new Date("2020-03-20Z") },
       { from: new Date("2020-06-01Z"), to: new Date("2020-06-15Z") }
-//      { from: Date.UTC(2020, 2, 10), to: Date.UTC(2020, 2, 20) },
-//      { from: Date.UTC(2020, 5, 1), to: Date.UTC(2020, 5, 15) },
     ]
   },
   {
@@ -76,8 +73,8 @@ const profiles = [
     openingTimes: [
       {
         day: WEEKDAYS,
-        startTime: 8 * MILLISECONDS_PER_HOUR,
-        endTime: 17 * MILLISECONDS_PER_HOUR
+        startTime: "08:00",
+        endTime: "17:00"
       },
     ],
     holidays: [
@@ -86,8 +83,8 @@ const profiles = [
       { month: 'DECEMBER', day: 25 }
     ],
     leaves: [
-      { from: Date.UTC(2020, 2, 21), to: Date.UTC(2020, 3, 21) },
-      { from: Date.UTC(2020, 8, 14), to: Date.UTC(2020, 8, 18) }
+      { from: new Date(2020, 2, 21), to: new Date(2020, 3, 21) },
+      { from: new Date(2020, 8, 14), to: new Date(2020, 8, 18) }
     ]
   },
   {

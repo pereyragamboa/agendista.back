@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { gql } = require('apollo-server');
 const hoursResolvers = require('./resolvers');
+const Time = require('../scalars/timeResolver');
 
 module.exports = {
   typeDefs: gql(fs.readFileSync('./src/businessHours/schema.graphqls').toString()),
@@ -21,6 +22,7 @@ module.exports = {
       __resolveReference(reference) {
         return hoursResolvers.getBusinessHours(reference.id);
       },
-    }
+    },
+    Time
   }
 };
