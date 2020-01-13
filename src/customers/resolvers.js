@@ -21,6 +21,14 @@ function deleteCustomer(customerId) {
   return false;
 }
 
+function findCustomersByName(names) {
+  return clients.filter(client =>
+    names.map(name => name.toLowerCase()).some(name =>
+      client.firstName.toLowerCase().includes(name) || client.lastName.toLowerCase().includes(name)
+    )
+  );
+}
+
 function updateCustomer(customerId, customer) {
   const indexFound = clients.findIndex(customer => compareIndex(customer, customerId));
   if (indexFound >= 0) {
@@ -33,4 +41,6 @@ function updateCustomer(customerId, customer) {
 
 const compareIndex = (customer, idString) => customer.id === Number.parseInt(idString);
 
-module.exports = { addCustomer, deleteCustomer, getAllCustomers, getCustomer, updateCustomer };
+module.exports = {
+  addCustomer, deleteCustomer, findCustomersByName,
+  getAllCustomers, getCustomer, updateCustomer };

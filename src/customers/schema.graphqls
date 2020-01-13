@@ -21,6 +21,7 @@ input CustomerInput {
 type Query {
     getAllCustomers: [Customer!]
     getCustomer(clientId: ID!): Customer
+    findCustomersByName(names: [String]): [Customer]!
 }
 
 type Mutation {
