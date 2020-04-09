@@ -6,6 +6,7 @@ module.exports = {
   typeDefs: gql(fs.readFileSync('./src/customers/schema.graphqls').toString()),
   resolvers: {
     Query: {
+      findCustomersByName: (parent, args) => customerResolvers.findCustomersByName(args.names),
       getAllCustomers: customerResolvers.getAllCustomers,
       getCustomer: (parent, args) => customerResolvers.getCustomer(args.clientId),
     },
