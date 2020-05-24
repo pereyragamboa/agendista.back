@@ -11,7 +11,11 @@ function getServicesByProfile(profileId) {
 
 function addService(profileId, newService) {
   if (typeof newService === 'object' && profiles.find(p => compareIndex(p, profileId))) {
-    const addedService = { id: getServiceId(), profileId, ...newService };
+    const addedService = {
+      id: getServiceId(),
+      profileId: Number.parseInt(profileId),
+      ...newService
+    };
     services.push(addedService);
     return addedService;
   } else return null;

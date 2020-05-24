@@ -171,7 +171,7 @@ module.exports = {
     return profile; }),
 
   // Adds IDs to services
-  services: services.map(service => { service.id = getServiceId(); return service; }),
+  services: services.map(service => { return { id: getServiceId(), ...service }}),
 
   // Adds IDs to appointments
   appointments: appointments.map(appointment => { appointment.id = getAppointmentId(); return appointment }),
