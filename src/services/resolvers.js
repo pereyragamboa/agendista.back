@@ -42,9 +42,9 @@ function deleteService(serviceId) {
   const deleteIndex = services.findIndex(service => service.id === Number.parseInt(serviceId));
   if (deleteIndex >= 0) {
     services.splice(deleteIndex, 1);
-    return true;
+    return serviceId;
   }
-  return false;
+  return null;
 }
 
 module.exports = {
