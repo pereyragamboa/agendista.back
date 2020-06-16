@@ -23,6 +23,6 @@ type Query {
 
 type Mutation {
     addLeave(profileId: ID!, leave: LeaveInput): Leave
-    deleteLeave(leaveId: ID!): Boolean!
+    deleteLeave(leaveId: ID!): ID
     updateLeave(leaveId: ID!, leave: LeaveInput): Leave
 }

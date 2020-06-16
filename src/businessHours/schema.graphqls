@@ -35,6 +35,6 @@ type Query {
 
 type Mutation {
     addBusinessHours(profileId: ID!, businessHours: BusinessHoursInput): BusinessHours
-    deleteBusinessHours(timesId: ID!): Boolean!
+    deleteBusinessHours(timesId: ID!): ID
     updateBusinessHours(timesId: ID!, businessHours: BusinessHoursInput): BusinessHours
 }
