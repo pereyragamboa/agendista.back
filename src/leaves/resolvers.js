@@ -19,8 +19,8 @@ function deleteLeave(leaveId) {
   });
   if (profileIndex >= 0) {
     profiles[profileIndex].leaves.splice(leaveIndex, 0);
-    return true;
-  } else return false;
+    return leaveId;
+  } else return null;
 }
 
 function getLeave(leaveId) {

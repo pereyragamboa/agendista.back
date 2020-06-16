@@ -22,9 +22,9 @@ function deleteBusinessHours(timesId) {
       });
   if (targetProfile !== undefined) {
     targetProfile.openingTimes.splice(timesIndex, 1);
-    return true;
+    return timesId;
   }
-  return false;
+  return null;
 }
 
 function getBusinessHours(timesId) {
