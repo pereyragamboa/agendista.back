@@ -12,6 +12,15 @@ function addBusinessHours(profileId, businessHours) {
   return null;
 }
 
+function clearBusinessHours(profileId) {
+  const targetProfile = profiles.find(profile => compareIndex(profile, profileId));
+  if (targetProfile !== undefined) {
+    targetProfile.openingTimes = [];
+    return profileId;
+  }
+  return null;
+}
+
 function deleteBusinessHours(timesId) {
   let timesIndex = -1;
   const targetProfile = profiles.find(
@@ -40,6 +49,18 @@ function getBusinessHoursByProfile(profileId, businessDay) {
   ).map(times => { return { ...times, profile: { profileId } }});
 }
 
+function setBusinessHours(profileId, businessHourList) {
+  const targetProfile = profiles.find(profile => compareIndex(profile, profileId));
+  if (targetProfile !== undefined) {
+    const newBusinessHours = businessHourList.map(businessHour => {
+      return { ...businessHour, id: getOpeningTimesId() }
+    });
+    targetProfile.openingTimes = newBusinessHours;
+    return newBusinessHours;
+  }
+  return [];
+}
+
 function updateBusinessHours(timesId, businessHours) {
   let timesIndex = -1;
   const targetProfile = profiles.find(
@@ -61,8 +82,10 @@ function updateBusinessHours(timesId, businessHours) {
 
 module.exports = {
   addBusinessHours,
+  clearBusinessHours,
   deleteBusinessHours,
   getBusinessHours,
   getBusinessHoursByProfile,
+  setBusinessHours,
   updateBusinessHours
 };
