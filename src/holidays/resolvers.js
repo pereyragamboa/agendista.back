@@ -23,9 +23,9 @@ function deleteHoliday(holidayId) {
       });
   if (profile !== undefined) {
     profile.holidays.splice(holidayIndex, 1);
-    return true;
+    return holidayId;
   }
-  return false;
+  return null;
 }
 
 function getHoliday(holidayId) {

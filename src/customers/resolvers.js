@@ -16,9 +16,9 @@ function deleteCustomer(customerId) {
   const indexFound = clients.findIndex(customer => compareIndex(customer, customerId));
   if (indexFound >= 0) {
     clients.splice(indexFound, 1);
-    return true;
+    return customerId;
   }
-  return false;
+  return null;
 }
 
 function findCustomersByName(names) {

@@ -26,5 +26,5 @@ type Query{
 type Mutation{
     addService (profileId: ID!, newService: ServiceInput!): Service!
     updateService (serviceId: ID!, service: ServiceInput!): Service
-    deleteService (serviceId: ID!): Boolean!
+    deleteService (serviceId: ID!): ID
 }

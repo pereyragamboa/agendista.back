@@ -9,9 +9,9 @@ function deleteProfile(profileId) {
   const indexFound = profiles.findIndex(profile => compareIndex(profile, profileId));
   if (indexFound >= 0) {
     profiles.splice(indexFound, 1);
-    return true;
+    return profileId;
   }
-  return false;
+  return null;
 }
 
 function updateProfile(profileId, profile) {

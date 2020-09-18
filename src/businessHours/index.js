@@ -16,7 +16,11 @@ module.exports = {
       deleteBusinessHours: (parent, args) =>
           hoursResolvers.deleteBusinessHours(args.timesId),
       updateBusinessHours: (parent, args) =>
-          hoursResolvers.updateBusinessHours(args.timesId, args.businessHours)
+          hoursResolvers.updateBusinessHours(args.timesId, args.businessHours),
+      setBusinessHours: (parent, args) =>
+          hoursResolvers.setBusinessHours(args.profileId, args.businessHours),
+      clearBusinessHours: (parent, args) =>
+          hoursResolvers.clearBusinessHours(args.profileId)
     },
     BusinessHours: {
       __resolveReference(reference) {

@@ -40,6 +40,6 @@ type Query {
 
 type Mutation {
     addAppointment(appointment: AppointmentInput): Appointment!
-    cancelAppointment(appointmentId: ID!): Boolean!
+    cancelAppointment(appointmentId: ID!): ID
     updateAppointment(appointmentId: ID!, update: AppointmentInput): Appointment!
 }

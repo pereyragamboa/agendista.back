@@ -13,9 +13,9 @@ function cancelAppointment(appointmentId) {
 
   if (index >= 0) {
     appointments.splice(index, 1);
-    return true;
+    return appointmentId;
   }
-  return false;
+  return null;
 }
 
 function getAppointment(appointmentId) {

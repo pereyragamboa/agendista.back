@@ -65,7 +65,7 @@ type Query {
 type Mutation {
     addFixedHoliday(profileId: ID!, holiday: FixedHolidayInput): FixedHoliday
     addVariableHoliday(profileId: ID!, holiday: VariableHolidayInput): VariableHoliday
-    deleteHoliday(holidayId: ID!): Boolean!
+    deleteHoliday(holidayId: ID!): ID
     updateFixedHoliday(holidayId: ID!, holiday: FixedHolidayInput): FixedHoliday
     updateVariableHoliday(holidayId: ID!, holiday: VariableHolidayInput): VariableHoliday
 }

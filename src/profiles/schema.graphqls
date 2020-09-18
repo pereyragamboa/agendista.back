@@ -53,5 +53,5 @@ type Query {
 type Mutation {
     addProfile(profile: ProfileInput): Profile!
     updateProfile(profileId: ID!, profile: ProfileInput): Profile!
-    deleteProfile(profileId: ID!): Boolean!
+    deleteProfile(profileId: ID!): ID
 }
